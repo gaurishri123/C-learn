@@ -10,7 +10,9 @@ vector<int> firstLast(vector<int> &arr, int n, int x){
     int last=-1;
     for(int i=0; i<n; i++){
         if(arr[i]==x){
-            if(first==-1) first=i;  //changes -1 to the first occuring index
+            if(first==-1){
+                first=i;        //changes -1 to first occuring index
+            }  
             last=i; //keeps on updating last
         }
     }

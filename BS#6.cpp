@@ -34,6 +34,8 @@ int singleElement(vector<int> &arr, int n){
 //(ODD,EVEN)-> ELEMENT IS ON THE LEFT HALF, ELIMINATE THE RIGH HALF
 //IF ODD==EVEN, WE ARE ON THE RIGHT HALF AND ELEMENT IS ON THE LEFT
 
+//EVEN AND ODD ARE INDEX POSITIONS NOT THE ELEMENT
+
 int singleElement2(vector<int> &arr, int n){
     if(n==1) return arr[0];
     if(arr[0]!=arr[1]) return arr[0];

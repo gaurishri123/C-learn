@@ -14,11 +14,11 @@ int minimumElement(vector<int> &arr, int n){
         }
         if(arr[low]<=arr[mid]){
             ans=min(ans,arr[low]); //finding the min element in sorted part
-            low=mid+1; //eleminating left half
+            low=mid+1; //eleminating left half since we have found the minimum element in this part  
         }
         else{
-            ans=min(ans,arr[mid]);
-            high=mid-1;
+            ans=min(ans,arr[mid]); //we are on the right part i.e if arr[low]>arr[mid]
+            high=mid-1;//eleminating right part since we have found the smallest element in this part
         
         }
     }
