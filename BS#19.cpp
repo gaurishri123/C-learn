@@ -51,6 +51,7 @@ double median(vector<int> &a, vector<int> &b){
 
 //OPTIMAL SOLUTION
 
+
 double medianOfSortedArray(vector<int> nums1, vector<int> nums2){
     if(nums2.size()<nums1.size()) medianOfSortedArray(nums2,nums1);
     int n1=nums1.size();
