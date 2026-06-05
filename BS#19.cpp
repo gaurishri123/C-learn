@@ -53,7 +53,7 @@ double median(vector<int> &a, vector<int> &b){
 
 
 double medianOfSortedArray(vector<int> nums1, vector<int> nums2){
-    if(nums2.size()<nums1.size()) medianOfSortedArray(nums2,nums1);
+    if(nums2.size()<nums1.size()) return medianOfSortedArray(nums2,nums1);
     int n1=nums1.size();
     int n2=nums2.size();
     int low=0;
@@ -65,8 +65,8 @@ double medianOfSortedArray(vector<int> nums1, vector<int> nums2){
         int left1=cut1==0? INT_MIN: nums1[cut1-1]; //edge cases
         int left2=cut2==0? INT_MIN: nums2[cut2-1];
 
-        int right1=cut1==0? INT_MAX: nums1[cut1]; //edge cases
-        int right2=cut2==0? INT_MAX: nums2[cut2];
+        int right1=cut1==n1? INT_MAX: nums1[cut1]; //edge cases
+        int right2=cut2==n2? INT_MAX: nums2[cut2];
 
         if(left1<=right2 && left2<=right1){
             //condition for if the merged array is even
