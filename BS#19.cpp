@@ -60,6 +60,8 @@ double medianOfSortedArray(vector<int> nums1, vector<int> nums2){
     int high=n1;
     while(low<=high){
         int cut1=(low+high)/2;
+        //(n1+n2+1) is the total number of elements in both the arrays
+        //+1 is added so that it can be devided to give a whole number in case of odd elements and can be subtracted easily
         int cut2=(n1+n2+1)/2-cut1; //works for both odd and even 
 
         int left1=cut1==0? INT_MIN: nums1[cut1-1]; //edge cases
@@ -87,3 +89,5 @@ double medianOfSortedArray(vector<int> nums1, vector<int> nums2){
     }
     return 0.0;
 }
+
+//I did not understand the kth element problem so please go check it out

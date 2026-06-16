@@ -25,7 +25,7 @@ int secondSmallest(vector<int> &arr, int n){
             smallest=arr[i];
         }
         else if(arr[i]!=smallest && arr[i]<ssmallest){
-            ssmallest= smallest;
+            ssmallest= smallest; //do a dry run of [10,5,8] to understand 
         }
     }
     return ssmallest;
