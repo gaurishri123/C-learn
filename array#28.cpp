@@ -10,7 +10,7 @@ void sort_arr(vector<int> &arr, int n){
             swap(arr[low], arr[mid]);
             low++;
             mid++;
-        }
+        } 
         else if(arr[mid]==1){
             mid++;
         }

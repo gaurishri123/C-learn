@@ -31,3 +31,9 @@ string reverseWords(string s){
     }
     return result;
 }
+
+/*in the first if else statement, 
+we used else if(!word.empty()) istead of writing else if(s[i]==" ") to add
+ the last word of the string in words vector since there will be no space
+  after the last word of string and hence there will be no statement for 
+  us to write */

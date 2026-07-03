@@ -5,7 +5,7 @@ using namespace std;
 
 int majority_element(vector<int> &arr, int n){
     int cnt=0;
-    int el;
+    int el=NULL;
     for(int i=0; i<n; i++){
         if(cnt==0){
             cnt=1;

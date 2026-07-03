@@ -1,4 +1,4 @@
-//left rotating the array by d places
+//left and right rotating the array by d places
 #include <bits/stdc++.h>
 using namespace std;
 void left_rotate(vector<int> &arr, int n, int d){
@@ -37,4 +37,29 @@ int main(){
     return 0;
     
 
+}
+
+//right rotation
+#include<bits/stdc++.h>
+using namespace std;
+
+void rightRotation(vector<int> &arr, int n, int d){
+    d=d%n;
+    vector<int> temp(d);
+
+    //storing
+    for(int i=n-d; i<n; i++){
+        temp[i-(n-d)]=arr[i];
+    }
+
+    //shifting
+    for(int i=n-d; i>=0; i--){
+        arr[i+d]=arr[i]; //to avoid rte run loop from i=n-1; i>=d; i-- --> arr[i]=arr[i-d]
+    }
+
+    //putting the temp array to the beginning
+    for(int i=0; i<d; i++){
+        arr[i]=temp[i];
+    }
+    
 }

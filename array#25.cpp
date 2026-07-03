@@ -8,8 +8,9 @@ string two_sum(vector<int> &arr, int n, int target){
         int a= arr[i];
         int more= target-a;
         if(mpp.find(more)!=mpp.end()){     //hashing used in this questiom
-            return "yes";                 //stores element array as key
+            return "yes";                 //stores array element as key
         }                                  //index as value   
+                                        //mpp.end() means empty position after last element
         mpp[a]=i;    
     }
     return "no";
