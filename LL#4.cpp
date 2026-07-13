@@ -1,9 +1,11 @@
 //Deletion of head
 //Deletion of tail
-//Removes any K element
+//Removes element at Kth position
 //Remove element
 //Insert Head
 //Insert Tail
+//Insert element at Kth position
+
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -32,8 +34,8 @@ Node* convertArr2LL(vector<int> &arr){
     Node* mover=head;
     for(int i=1; i<arr.size(); i++){
         Node* temp= new Node(arr[i]);
-        mover->next=temp;
-        mover=temp;
+        mover->next=temp;  //the next node of mover is temp
+        mover=temp;  //mover is now temp
     }
     return head;
 }
@@ -47,7 +49,7 @@ void print(Node* head){
 }
 
 
-//removes head
+//1. REMOVES HEAD
 
 Node* removeHead(Node* head){
     if(head==NULL) return head;
@@ -58,7 +60,7 @@ Node* removeHead(Node* head){
     
 }
 
-//removes tail
+//2. REMOVES TAIL
 
 Node* removeTail(Node* head){
     //if LL is empty or the LL has only one element
@@ -72,7 +74,7 @@ Node* removeTail(Node* head){
     return head;
 }
 
-//removes any K positon
+//3. REMOVES Kth POSITION
 
 Node* removeK(Node* head, int k){
     //if LL is empty
@@ -104,7 +106,8 @@ Node* removeK(Node* head, int k){
     return head;
 }
 
-//Remove the stated element 
+//4. REMOVE THE GIVEN ELEMENT
+
 Node* removeElement(Node* head, int el){
     //if LL is empty
     if(head==NULL) return head;
@@ -133,14 +136,16 @@ Node* removeElement(Node* head, int el){
     return head;
 }
 
-//Insertion of new element
+//5. INSERTION OF A NEW ELEMENT AS HEAD
 
 Node* insertHead(Node* head, int val){
     return new Node(val,head); // the confusion can be in the main function since the function argument is reverse of the argument inside the function
 }
 
+//6. INSERTION OF A NEW ELEMENT AS TAIL
+
 Node* insertTail(Node* head, int val){
-    if(head==NULL) return new Node(val);
+    if(head==NULL) return new Node(val); //If the LL is empty, just return the value which is given
     
     Node* temp=head;
     while(temp->next!=NULL){
@@ -152,9 +157,39 @@ Node* insertTail(Node* head, int val){
     return head;
 }
 
+//7. INSERTION OF A GIVEN ELEMENT AT THE Kth POSITION
+
+Node* newElement(Node* head, int k, int el){
+    if(head==NULL){
+        if(k==1){
+            return new Node(el);
+        }
+        else{
+            return NULL;
+        }
+    }
+    if(k==1){
+        return new Node(el,head);
+    }
+    
+    int cnt=0;
+    Node* temp=head;
+    while(temp!=NULL){
+        cnt++;
+        if(cnt==(k-1)){
+            Node* x= new Node(el, temp->next);
+            temp->next=x;
+            break;
+        }
+        temp=temp->next;
+
+    }
+    return head;
+}
+
 int main(){
     vector<int> arr={1,2,3,4,5};
     Node* head=convertArr2LL(arr);
-    head=insertTail(head,100); 
+    head=newElement(head,3,100); 
     print(head);
 }

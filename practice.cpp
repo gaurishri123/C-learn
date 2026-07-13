@@ -1,29 +1,21 @@
-//finding the Majority element 
+//Rearranging the elements of an array in alternate positive and neagtive order
 #include<bits/stdc++.h>
 using namespace std;
 
-int majorityElement(vector<int> &arr, int n){
-    map<int,int> mpp;
+vector<int> alternation(vector<int> &arr, int n){
+    vector<int> positive;
+    vector<int> negative;
     for(int i=0; i<n; i++){
-        mpp[arr[i]]++;
-    }
-
-    for(auto it:mpp){
-        if(it.second>n/2){
-            return it.first;
+        if(arr[i]>=0){
+            positive.push_back(arr[i]);
+        }
+        else{
+            negative.push_back(arr[i]);
         }
     }
-    return -1;
-}
-
-int main(){
-    int n;
-    cin>>n;
-    vector<int> arr(n);
     for(int i=0; i<n; i++){
-        cin>>arr[i];
+        arr[2*i]=positive[i];
+        arr[2*i+1]=negative[i];
     }
-    int ans=majorityElement(arr,n);
-    cout<<ans;
-    return 0;
+    return arr;
 }

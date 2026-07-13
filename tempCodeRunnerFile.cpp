@@ -1,0 +1,2 @@
+
+Node* removeTail(Node* head){
