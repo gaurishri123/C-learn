@@ -2,7 +2,8 @@
 //1. Finding the middle node of a linked list
 //2. Reversing a LL by traversal method and recursive method
 //3. Finding a Loop in the LL
-
+//4. Finding the starting point of loop if there is any
+//5. Finding Length of a Loop in LL
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -155,10 +156,81 @@ bool findingLoop2(Node* head){
     return false;
 }
 
+//4.Finding the Starting point of a Loop
+Node* findingStart(Node* head){
+    map<Node*, int> mpp;
+    Node* temp=head;
+    while(temp!=NULL){
+        if(mpp.find(temp)!=mpp.end()){
+            return temp;
+        }
+        mpp[temp]=1;
+        temp=temp->next;
+    }
+    return NULL;
+}
+
+//Optimal Solution
+Node* findingStart2(Node* head){
+    Node* slow=head;
+    Node* fast=head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+        if(slow==fast){
+            slow=head;
+            while(slow!=fast){
+                slow=slow->next;
+                fast=fast->next;
+            }
+            return slow;
+        }
+    }
+    return NULL;
+}
+
+//5. Finding Length of a Loop 
+
+int lengthOfLoop(Node* head){
+    map<Node*, int> mpp;
+    Node* temp=head;
+    int timer=1;
+    while(temp!=NULL){
+        if(mpp.find(temp)!=mpp.end()){
+            int value=mpp[temp];
+            return timer-value;
+        }
+        mpp[temp]=timer;
+        timer++;
+        temp=temp->next;
+    }
+    return 0;
+}
+
+//Optimal Solution
+int lengthOfLoop(Node* head){
+    Node* slow=head;
+    Node* fast=head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+        if(slow==fast){
+            int cnt=1;
+            fast=fast->next;
+            while(slow!=fast){
+                cnt++;
+                fast=fast->next;
+            }
+            return cnt;
+        }
+    }
+    return 0;
+}
+
 int main(){
     vector<int> arr={1,2,3,4,5};
     Node* head=convertArr2LL(arr);
-    bool ans=findingLoop2(head);
+    Node* ans=findingStart(head);
     cout<<ans;
     return 0;
 }
