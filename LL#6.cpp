@@ -4,6 +4,7 @@
 //3. Finding a Loop in the LL
 //4. Finding the starting point of loop if there is any
 //5. Finding Length of a Loop in LL
+//6. Finding if a LL is palindromic or not
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -208,7 +209,7 @@ int lengthOfLoop(Node* head){
 }
 
 //Optimal Solution
-int lengthOfLoop(Node* head){
+int lengthOfLoo2(Node* head){
     Node* slow=head;
     Node* fast=head;
     while(fast!=NULL && fast->next!=NULL){
@@ -227,10 +228,60 @@ int lengthOfLoop(Node* head){
     return 0;
 }
 
+//6. Finding if a LL is palindromic
+bool palindrome(Node* head){
+    Node* temp=head;
+    stack<int> st;
+    while(temp!=NULL){
+        st.push(temp->data);
+        temp=temp->next;
+    }
+    temp=head;
+    while(temp!=NULL){
+        if(temp->data!=st.top()) return false;
+        temp=temp->next;
+        st.pop();
+
+    }
+    return true;
+}
+
+//Optimal Solution
+//In finding the middle of LL we were looking for the second middle when lenght is even
+//Therefore the condition was written as fast!=NULL for even
+//Here we are looking for the first middle so the condition is fast->next->next!=NULL
+//for odd, the condition remains same 
+//Since the links are never changed, slow will always point to slow->next
+//therefore second=newHead
+
+bool palindrome2(Node* head){
+    Node* slow=head;
+    Node* fast=head;
+    while(fast->next!=NULL && fast->next->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    Node* newHead=reverseLL2(slow->next);
+    Node* first=head;
+    Node* second=newHead;
+    while(second!=NULL){
+        if(second->data!=first->data){
+            reverseLL2(newHead);
+            return false;
+        }
+        first=first->next;
+        second=second->next;
+
+    }
+    reverseLL2(newHead);
+    return true;
+}
+
 int main(){
-    vector<int> arr={1,2,3,4,5};
+    vector<int> arr={1,2,3,2,1};
     Node* head=convertArr2LL(arr);
-    Node* ans=findingStart(head);
+    bool ans=palindrome2(head);
     cout<<ans;
     return 0;
 }
+
