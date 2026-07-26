@@ -1,21 +1,27 @@
-//Rearranging the elements of an array in alternate positive and neagtive order
+//Two Sum
+//Better Approach
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int> alternation(vector<int> &arr, int n){
-    vector<int> positive;
-    vector<int> negative;
+bool twoSum(vector<int> &arr, int n, int target){
+    map<int,int> mpp;
     for(int i=0; i<n; i++){
-        if(arr[i]>=0){
-            positive.push_back(arr[i]);
+        int rem=target-arr[i];
+        if(mpp.find(rem)!=mpp.end()){
+            return true;
         }
         else{
-            negative.push_back(arr[i]);
+            mpp[arr[i]]=i;
         }
     }
-    for(int i=0; i<n; i++){
-        arr[2*i]=positive[i];
-        arr[2*i+1]=negative[i];
-    }
-    return arr;
+    return false;
+}
+
+int main(){
+    vector<int> arr={2,6,5,8,11};
+    int n=arr.size();
+    int target=14;
+    bool ans=twoSum(arr,n,target);
+    cout<<ans;
+    return 0;
 }

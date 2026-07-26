@@ -1,25 +1,27 @@
-//finding number appearing ones while others appear twice in an array
-//OPTIMAL SOLUTION
+//Finding The longest subarray with sum as k (positives as well as negatives)
 #include<bits/stdc++.h>
 using namespace std;
+//Optimal solution
 
-int oneAppearance(int arr[], int n){
-    int xor1=0;
+int longestSubarray(vector<int> &arr, int n,long long k){
+    map<long long, int> presum;
+    long long sum=0;
+    int maxLength=0;
     for(int i=0; i<n; i++){
-        xor1=xor1^(arr[i]);
-    }
-    return xor1;
+        sum+=arr[i];
+        if(sum==k){
+            maxLength=max(maxLength, i+1);
 
+        }
+        long long rem=sum-k;
+        if(presum.find(rem)!=presum.end()){
+            int len=i-presum[rem];
+            maxLength=max(maxLength,len);
+        }
+        if(presum.find(sum)==presum.end()){
+        presum[sum]=i;
+        }
+    }
+    return maxLength;
 }
 
-int main(){
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0; i<n; i++){
-        cin>>arr[i];
-    }
-    int result= oneAppearance(arr,n);
-    cout<<result;
-    return 0;
-}
